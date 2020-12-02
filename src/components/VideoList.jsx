@@ -12,7 +12,6 @@ var VideoList = (props) => (
     <div><h5><em>videoListEntry</em> view goes here</h5></div>
     <div><h5><em>videoListEntry</em> view goes here</h5></div>
     <div><h5><em>videoListEntry</em> view goes here</h5></div> */}
-
     {props.videos.map((currentVideo, index) => <VideoListEntry video={currentVideo} key={index} />)}
 
   </div>
