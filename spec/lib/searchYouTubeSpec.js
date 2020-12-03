@@ -14,6 +14,8 @@ var getURLSearchParams = function(url) {
 };
 
 var hasSameShape = function(objectOne, objectTwo) {
+  console.log('One', objectOne);
+  console.log('Two', objectTwo);
   if (Object.keys(objectOne).length !== Object.keys(objectTwo).length) {
     return false;
   }
