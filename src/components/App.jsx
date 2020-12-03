@@ -118,17 +118,13 @@ class App extends React.Component {
 
     var results;
     var callback = function(data) {
-      console.log('data is', data);
-      results = data;
-      console.log('results is', results);
-      //console.log('this is', this);
+      this.setState({
+        currentVideo: data[0],
+        videoList: data
+      });
     };
 
     this.props.searchYouTube(options, callback.bind(this));
-    // this.setState({
-    //   currentVideo: results[0],
-    //   videoList: results
-    // });
 
     // App.setState
   }
