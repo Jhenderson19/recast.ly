@@ -2,13 +2,13 @@ import exampleVideoData from '../data/exampleVideoData.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './videoPlayer.js';
 // import Search from './search.js';
-import searchYouTube from '../lib/searchYouTube.js';
 import YOUTUBE_API_KEY from '../config/youtube.js';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       currentVideo: {
         kind: '',
@@ -124,8 +124,7 @@ class App extends React.Component {
       //console.log('this is', this);
     };
 
-    searchYouTube(options, callback.bind(this));
-    console.log('results outside of callback function', results);
+    this.props.searchYouTube(options, callback.bind(this));
     // this.setState({
     //   currentVideo: results[0],
     //   videoList: results
