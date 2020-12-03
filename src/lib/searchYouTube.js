@@ -7,6 +7,7 @@ var searchYouTube = (options, callback) => {
     type: 'GET',
     // dataType: 'json',
     success: function(data) {
+      console.log(data.items);
       callback(data.items);
       return data.items;
     },

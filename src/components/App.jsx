@@ -1,15 +1,81 @@
 import exampleVideoData from '../data/exampleVideoData.js';
-import VideoList from './videoList.js';
+import VideoList from './VideoList.js';
 import VideoPlayer from './videoPlayer.js';
-
+// import Search from './search.js';
+import searchYouTube from '../lib/searchYouTube.js';
+import YOUTUBE_API_KEY from '../config/youtube.js';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentVideo: exampleVideoData[0],
-      videoList: exampleVideoData
+      currentVideo: {
+        kind: '',
+        etag: '',
+        id: {
+          kind: '',
+          videoId: ''
+        },
+        snippet: {
+          publishedAt: '',
+          channelId: '',
+          title: '',
+          description: '',
+          thumbnails: {
+            default: {
+              url: '',
+              width: 0,
+              height: 0
+            },
+            medium: {
+              url: '',
+              width: 0,
+              height: 0
+            },
+            high: {
+              url: '',
+              width: 0,
+              height: 0
+            }
+          },
+          channelTitle: '',
+          liveBroadcastContent: ''
+        }
+      },
+      videoList: [{
+        kind: '',
+        etag: '',
+        id: {
+          kind: '',
+          videoId: ''
+        },
+        snippet: {
+          publishedAt: '',
+          channelId: '',
+          title: '',
+          description: '',
+          thumbnails: {
+            default: {
+              url: '',
+              width: 0,
+              height: 0
+            },
+            medium: {
+              url: '',
+              width: 0,
+              height: 0
+            },
+            high: {
+              url: '',
+              width: 0,
+              height: 0
+            }
+          },
+          channelTitle: '',
+          liveBroadcastContent: ''
+        }
+      }]
     };
   }
 
@@ -39,6 +105,33 @@ class App extends React.Component {
         </div>
       </div>
     </div>);
+  }
+
+  componentDidMount() {
+    var options = {
+      query: 'cats',
+      max: 5,
+      key: YOUTUBE_API_KEY
+    };
+
+
+
+    var results;
+    var callback = function(data) {
+      console.log('data is', data);
+      results = data;
+      console.log('results is', results);
+      //console.log('this is', this);
+    };
+
+    searchYouTube(options, callback.bind(this));
+    console.log('results outside of callback function', results);
+    // this.setState({
+    //   currentVideo: results[0],
+    //   videoList: results
+    // });
+
+    // App.setState
   }
 }
 
