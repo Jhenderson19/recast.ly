@@ -114,8 +114,6 @@ class App extends React.Component {
       key: YOUTUBE_API_KEY
     };
 
-
-
     var results;
     var callback = function(data) {
       this.setState({
