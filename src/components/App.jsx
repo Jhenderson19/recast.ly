@@ -91,7 +91,7 @@ class App extends React.Component {
     return (<div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <Search handleChange={this.search.bind(this)}/>
+          <Search handleChange={_.debounce(this.search.bind(this), 500)}/>
         </div>
       </nav>
       <div className="row">
