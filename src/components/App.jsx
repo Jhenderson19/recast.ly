@@ -10,6 +10,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      query: 'cats',
       currentVideo: {
         kind: '',
         etag: '',
@@ -81,7 +82,6 @@ class App extends React.Component {
 
 
   handleTitleClick(videoObject) {
-
     this.setState({
       currentVideo: videoObject
     });
@@ -91,7 +91,7 @@ class App extends React.Component {
     return (<div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <Search userTyped={this.search.bind(this)}/>
+          <Search handleChange={this.search.bind(this)}/>
         </div>
       </nav>
       <div className="row">
@@ -105,8 +105,23 @@ class App extends React.Component {
     </div>);
   }
 
-  search() {
+  search(str) {
+    if (this.state.query !== str) {
+      this.state.query = str;
+      var options = {
+        query: str,
+        max: 5,
+        key: YOUTUBE_API_KEY
+      };
+      var callback = function(data) {
+        this.setState({
+          currentVideo: data[0],
+          videoList: data
+        });
+      };
 
+      this.props.searchYouTube(options, callback.bind(this));
+    }
   }
 
   componentDidMount() {
@@ -125,7 +140,6 @@ class App extends React.Component {
     };
 
     this.props.searchYouTube(options, callback.bind(this));
-
     // App.setState
   }
 }
