@@ -12,11 +12,7 @@ var searchYouTube = (options, callback) => {
       return data.items;
     },
     error: function() { console.error('oops'); },
-    // dataFilter: function(data, dataType) {
-    //   // var dataObject = JSON.parse(data);
-    //   console.log(data);
-    //   console.log(data.items);
-    // },
+
 
 
     //youtube
